@@ -45,159 +45,34 @@ st.markdown(
 		}
 
 		[data-testid="stBottom"] {
-			background: #ffffff;
+			background-color: #ffffff !important;
 		}
 
-		.block-container {
-			max-width: 1000px;
-			padding-top: 3rem;
-			padding-bottom: 8rem;
-		}
-
-		h1, h2, h3 {
-			font-family: 'Fraunces', serif;
-			letter-spacing: -0.03em;
-		}
-
-		.hero {
-			display: grid;
-			grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
-			gap: 2.5rem;
-			background: rgba(255, 255, 255, 0.85);
-			border: 1px solid var(--teal-100);
-			border-radius: 24px;
-			padding: 2.5rem;
-			box-shadow: 0 30px 60px rgba(13, 148, 136, 0.05);
-			backdrop-filter: blur(12px);
-			margin-bottom: 2rem;
-		}
-
-		.hero h1 {
-			margin: 0.5rem 0 1rem;
-			font-size: 2.75rem;
-			line-height: 1.1;
-		}
-
-		.hero p {
-			color: var(--ink-700);
-			font-size: 1.1rem;
-			line-height: 1.7;
-		}
-
-		.eyebrow {
-			text-transform: uppercase;
-			font-size: 0.75rem;
-			letter-spacing: 0.2em;
-			color: var(--teal-600);
-			font-weight: 700;
-		}
-
-		.hero-card {
-			background: #ffffff;
-			border: 1px solid var(--teal-100);
-			border-radius: 20px;
-			padding: 1.75rem;
-			box-shadow: 0 10px 30px rgba(13, 148, 136, 0.03);
-		}
-
-		.hero-card h3 {
-			margin: 0 0 1rem;
-			font-size: 1.25rem;
-		}
-
-		.hero-card ul {
-			padding-left: 1.25rem;
-			margin: 0;
-			color: var(--ink-700);
-			line-height: 1.6;
-		}
-
-		.chips {
-			display: flex;
-			gap: 0.75rem;
-			flex-wrap: wrap;
-			margin-top: 1.5rem;
-		}
-
-		.chip {
-			border: 1px solid var(--teal-100);
-			border-radius: 999px;
-			padding: 0.4rem 1rem;
-			font-size: 0.85rem;
-			color: var(--teal-600);
-			background: var(--teal-50);
-			font-weight: 500;
-		}
-
-		.section {
-			margin-top: 2rem;
-			padding: 2rem;
-			background: #ffffff;
-			border: 1px solid var(--teal-100);
-			border-radius: 20px;
-			box-shadow: 0 10px 30px rgba(13, 148, 136, 0.03);
-		}
-
-		.section-title {
-			font-weight: 600;
-			font-family: 'Fraunces', serif;
-			font-size: 1.5rem;
-			color: var(--ink-900);
-			margin-bottom: 1.25rem;
-		}
-
-		.card-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-			gap: 1.25rem;
-		}
-
-		.mini-card {
-			border: 1px solid var(--teal-50);
-			border-radius: 16px;
-			padding: 1.25rem;
-			background: #fcfdfd;
-			color: var(--ink-700);
-			font-size: 1rem;
-			line-height: 1.5;
-			transition: all 0.2s ease;
-		}
-
-		.mini-card:hover {
-			border-color: var(--teal-200);
-			background: #ffffff;
-			transform: translateY(-2px);
-		}
-
-		.alert {
-			border-radius: 16px;
-			border: 1px solid var(--teal-100);
-			background: #f0fdfa;
-			padding: 1.25rem 1.5rem;
-			color: var(--ink-900);
-			font-size: 1rem;
-			line-height: 1.6;
-			margin: 1.5rem 0;
-		}
-
-		[data-testid="stChatMessage"] {
-			border: 1px solid var(--teal-100);
-			background: #ffffff;
-			border-radius: 18px;
-			box-shadow: 0 15px 35px rgba(13, 148, 136, 0.04);
-			padding: 1.25rem;
-			margin-bottom: 1.25rem;
+		[data-testid="stBottomBlockContainer"] {
+			background-color: transparent !important;
 		}
 
 		[data-testid="stChatInput"] {
-			background: #ffffff;
-			border: 1px solid var(--teal-100);
-			border-radius: 16px;
-			box-shadow: 0 -10px 40px rgba(0,0,0,0.02);
+			background-color: #ffffff !important;
+			border: 1px solid var(--teal-100) !important;
+			border-radius: 16px !important;
+			box-shadow: 0 -10px 40px rgba(0,0,0,0.02) !important;
+		}
+
+		[data-testid="stChatInput"] div[role="textbox"] {
+			background-color: #ffffff !important;
+			color: var(--ink-900) !important;
 		}
 
 		[data-testid="stChatInput"] textarea {
-			font-family: 'Plus Jakarta Sans', sans-serif;
+			font-family: 'Plus Jakarta Sans', sans-serif !important;
+			background-color: transparent !important;
+			color: var(--ink-900) !important;
+		}
+
+		/* Hide the dark border/background from Streamlit's default container */
+		div[data-testid="stVerticalBlock"] > div:has([data-testid="stChatInput"]) {
+			background-color: transparent !important;
 		}
 
 		.stButton button,
