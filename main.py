@@ -70,6 +70,16 @@ st.markdown(
 			color: var(--ink-900) !important;
 		}
 
+		/* Target the container of the chat input */
+		.stChatInput {
+			background-color: #ffffff !important;
+		}
+
+		/* Target the sticky bottom container */
+		footer, .stChatInputContainer, [data-testid="stBottom"] {
+			background-color: #ffffff !important;
+		}
+
 		/* Hide the dark border/background from Streamlit's default container */
 		div[data-testid="stVerticalBlock"] > div:has([data-testid="stChatInput"]) {
 			background-color: transparent !important;
