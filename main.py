@@ -9,7 +9,7 @@ load_dotenv()
 
 MODEL_NAME = "llama-3.3-70b-versatile"
 
-st.set_page_config(page_title="SnehaCare (Groq)", page_icon="🩺", layout="centered")
+st.set_page_config(page_title="HealthCare (Groq)", page_icon="🩺", layout="centered")
 
 st.markdown(
 	"""
@@ -112,8 +112,8 @@ st.markdown(
 	"""
 	<div class="hero">
 		<div>
-			<div class="eyebrow">SnehaCare Assistant</div>
-			<h1>SnehaCare Bot</h1>
+			<div class="eyebrow">HealthCare Assistant</div>
+			<h1>HealthCare Bot</h1>
 			<p>
 				Share your symptoms, age, and how long you have felt them. I will offer possible next steps,
 				self-care tips, and when to seek urgent help.
@@ -158,7 +158,7 @@ def get_assistant_reply(client: Groq, model: str, messages: list[dict[str, str]]
 	system_message = {
 		"role": "system",
 		"content": (
-			"You are SnehaCare, a careful medical information assistant. Provide clear, practical guidance, ask follow-up questions "
+			"You are HealthCare, a careful medical information assistant. Provide clear, practical guidance, ask follow-up questions "
 			"when needed, and include warning signs that require urgent care. Do not claim to diagnose with certainty. "
 			"Keep responses concise and structured."
 		),
