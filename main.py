@@ -20,7 +20,7 @@ client = Groq(api_key=api_key)
 # ==================================================
 # CSS
 # ==================================================
-css = """
+st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap');
 
@@ -39,152 +39,142 @@ css = """
     --border: #e2e8f0;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
 html, body, .stApp {
     background: linear-gradient(135deg, #f0f9ff 0%, #f8fafc 40%, #f0fdf4 100%) !important;
-    font-family: 'Outfit', sans-serif;
-    color: var(--text);
+    font-family: 'Outfit', sans-serif !important;
+    color: var(--text) !important;
 }
 
 [data-testid="stHeader"],
 [data-testid="stToolbar"],
 footer, header {
-    background: transparent !important;
     display: none !important;
 }
 
+.main .block-container {
+    padding-top: 24px !important;
+    padding-bottom: 120px !important;
+    max-width: 860px !important;
+}
+
 [data-testid="stBottom"] {
-    background: rgba(255,255,255,0.9) !important;
+    background: rgba(255,255,255,0.95) !important;
     backdrop-filter: blur(20px) !important;
     border-top: 1px solid var(--border) !important;
-    padding: 12px 20px !important;
-}
-
-[data-testid="stChatInput"] {
-    background: white !important;
-    border: 2px solid var(--border) !important;
-    border-radius: 20px !important;
-    box-shadow: 0 4px 24px rgba(14,165,233,0.08) !important;
-    transition: all 0.3s ease !important;
-}
-
-[data-testid="stChatInput"]:focus-within {
-    border-color: var(--primary) !important;
-    box-shadow: 0 4px 32px rgba(14,165,233,0.18) !important;
 }
 
 [data-testid="stChatInput"] textarea {
     font-family: 'Outfit', sans-serif !important;
     font-size: 15px !important;
-    color: var(--text) !important;
+    border-radius: 16px !important;
+    border: 2px solid var(--border) !important;
 }
 
-/* ── NAV BAR ── */
+/* NAVBAR */
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 28px;
-    background: rgba(255,255,255,0.85);
+    padding: 16px 24px;
+    background: rgba(255,255,255,0.9);
     backdrop-filter: blur(20px);
-    border-radius: 24px;
+    border-radius: 20px;
     border: 1px solid var(--border);
-    margin-bottom: 28px;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    margin-bottom: 24px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
 }
 
-.nav-logo {
+.nav-left {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
-.nav-logo-icon {
-    width: 42px;
-    height: 42px;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
-    border-radius: 14px;
+.nav-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
-    box-shadow: 0 4px 16px rgba(14,165,233,0.35);
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(14,165,233,0.3);
 }
 
-.nav-logo-text {
-    font-size: 20px;
+.nav-name {
+    font-size: 18px;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--primary-dark), var(--accent));
+    background: linear-gradient(135deg, #0284c7, #06b6d4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
 .nav-badge {
-    background: linear-gradient(135deg, var(--primary-light), #cffafe);
-    color: var(--primary-dark);
-    padding: 6px 16px;
+    background: #e0f2fe;
+    color: #0284c7;
+    padding: 6px 14px;
     border-radius: 999px;
     font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.5px;
     border: 1px solid rgba(14,165,233,0.2);
 }
 
-/* ── HERO ── */
+/* HERO */
 .hero-wrapper {
-    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #06b6d4 100%);
-    border-radius: 28px;
-    padding: 44px 44px 48px;
-    margin-bottom: 24px;
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 60%, #06b6d4 100%);
+    border-radius: 24px;
+    padding: 40px 36px;
+    margin-bottom: 20px;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(14,165,233,0.3);
+    box-shadow: 0 16px 48px rgba(14,165,233,0.28);
 }
 
-.hero-wrapper::before {
-    content: '';
+.hero-blob1 {
     position: absolute;
-    top: -80px; right: -80px;
-    width: 300px; height: 300px;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
     background: rgba(255,255,255,0.07);
     border-radius: 50%;
+    pointer-events: none;
 }
 
-.hero-wrapper::after {
-    content: '';
+.hero-blob2 {
     position: absolute;
-    bottom: -60px; left: -40px;
-    width: 220px; height: 220px;
+    bottom: -50px;
+    left: -30px;
+    width: 180px;
+    height: 180px;
     background: rgba(255,255,255,0.05);
     border-radius: 50%;
+    pointer-events: none;
 }
 
 .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    display: inline-block;
     background: rgba(255,255,255,0.18);
     border: 1px solid rgba(255,255,255,0.3);
     color: white;
-    padding: 6px 16px;
+    padding: 5px 14px;
     border-radius: 999px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
-    margin-bottom: 18px;
-    backdrop-filter: blur(10px);
+    margin-bottom: 16px;
 }
 
 .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: 52px;
+    font-size: 46px;
     font-weight: 800;
     color: white;
-    line-height: 1.08;
-    margin-bottom: 16px;
+    line-height: 1.1;
+    margin-bottom: 14px;
 }
 
 .hero-title span {
@@ -192,11 +182,11 @@ footer, header {
 }
 
 .hero-sub {
-    font-size: 16px;
+    font-size: 15px;
     color: rgba(255,255,255,0.85);
     line-height: 1.75;
-    max-width: 520px;
-    margin-bottom: 30px;
+    max-width: 500px;
+    margin-bottom: 24px;
     font-weight: 400;
 }
 
@@ -208,185 +198,92 @@ footer, header {
 
 .hero-chip {
     background: rgba(255,255,255,0.18);
-    border: 1px solid rgba(255,255,255,0.3);
+    border: 1px solid rgba(255,255,255,0.28);
     color: white;
-    padding: 8px 18px;
+    padding: 7px 16px;
     border-radius: 999px;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    backdrop-filter: blur(10px);
 }
 
-.hero-float {
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.25);
-    backdrop-filter: blur(20px);
-    border-radius: 24px;
-    padding: 24px 28px;
-    min-width: 200px;
-    z-index: 2;
+/* INFO CARDS ROW */
+.info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
 }
 
-.hero-float h4 {
-    color: white;
+.info-card {
+    background: white;
+    border-radius: 20px;
+    padding: 22px;
+    border: 1.5px solid var(--border);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+}
+
+.info-card-title {
     font-size: 14px;
     font-weight: 700;
-    margin-bottom: 14px;
-    letter-spacing: 0.3px;
-}
-
-.hero-float li {
-    color: rgba(255,255,255,0.85);
-    font-size: 13px;
-    margin-bottom: 8px;
-    padding-left: 4px;
-    list-style: none;
+    color: var(--text);
+    margin-bottom: 12px;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.dot {
-    width: 6px; height: 6px;
-    background: #7dd3fc;
-    border-radius: 50%;
-    flex-shrink: 0;
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* ── ALERT ── */
-.alert-box {
+.info-list li {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 5px 0;
+    border-bottom: 1px solid #f1f5f9;
     display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    background: linear-gradient(135deg, #fff7ed, #fff);
-    border: 1.5px solid #fed7aa;
-    border-left: 4px solid var(--warning);
-    border-radius: 20px;
-    padding: 18px 22px;
-    margin-bottom: 24px;
-    box-shadow: 0 4px 16px rgba(245,158,11,0.08);
-}
-
-.alert-icon {
-    font-size: 22px;
-    flex-shrink: 0;
-    margin-top: 2px;
-}
-
-.alert-text {
-    font-size: 14px;
-    color: #92400e;
-    line-height: 1.65;
+    align-items: center;
+    gap: 8px;
     font-weight: 500;
 }
 
-.alert-text strong {
-    color: #78350f;
-    font-weight: 700;
-    font-size: 15px;
+.info-list li:last-child {
+    border-bottom: none;
 }
 
-/* ── FEATURE CARDS ── */
-.section-label {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    text-transform: uppercase;
-    color: var(--primary);
-    margin-bottom: 8px;
-}
+.dot-blue  { color: #0ea5e9; font-size: 18px; line-height: 1; }
+.dot-green { color: #10b981; font-size: 18px; line-height: 1; }
 
-.section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 20px;
-}
-
-.feat-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 30px;
-}
-
-.feat-card {
-    background: white;
-    border-radius: 22px;
-    padding: 24px 22px;
-    border: 1.5px solid var(--border);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.feat-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    border-radius: 22px 22px 0 0;
-}
-
-.feat-card.blue::before { background: linear-gradient(90deg, var(--primary), var(--accent)); }
-.feat-card.green::before { background: linear-gradient(90deg, var(--success), #34d399); }
-.feat-card.orange::before { background: linear-gradient(90deg, var(--warning), #fbbf24); }
-
-.feat-icon {
-    font-size: 30px;
-    margin-bottom: 12px;
-    display: block;
-}
-
-.feat-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 6px;
-}
-
-.feat-desc {
-    font-size: 13px;
-    color: var(--muted);
-    line-height: 1.6;
-    font-weight: 400;
-}
-
-/* ── STATS BAR ── */
-.stats-bar {
+/* STATS */
+.stats-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
-    margin-bottom: 28px;
+    margin-bottom: 20px;
 }
 
-.stat-item {
+.stat-box {
     background: white;
     border-radius: 18px;
-    padding: 20px;
+    padding: 20px 16px;
     text-align: center;
     border: 1.5px solid var(--border);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 
 .stat-num {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 800;
-    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background: linear-gradient(135deg, #0ea5e9, #06b6d4);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    line-height: 1.1;
 }
 
-.stat-label {
-    font-size: 12px;
+.stat-lbl {
+    font-size: 11px;
     color: var(--muted);
     font-weight: 600;
     margin-top: 4px;
@@ -394,117 +291,174 @@ footer, header {
     letter-spacing: 0.5px;
 }
 
-/* ── DIVIDER ── */
-.divider {
+/* ALERT */
+.alert-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: #fffbeb;
+    border: 1.5px solid #fde68a;
+    border-left: 4px solid #f59e0b;
+    border-radius: 18px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+}
+
+.alert-icon { font-size: 20px; margin-top: 2px; flex-shrink: 0; }
+
+.alert-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #78350f;
+    margin-bottom: 4px;
+}
+
+.alert-text {
+    font-size: 13px;
+    color: #92400e;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* FEATURE CARDS */
+.feat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.feat-card {
+    background: white;
+    border-radius: 20px;
+    padding: 22px 18px;
+    border: 1.5px solid var(--border);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+}
+
+.feat-card-top {
+    height: 3px;
+    border-radius: 3px;
+    margin: -22px -18px 18px;
+    border-radius: 20px 20px 0 0;
+}
+
+.blue-bar  { background: linear-gradient(90deg, #0ea5e9, #06b6d4); }
+.green-bar { background: linear-gradient(90deg, #10b981, #34d399); }
+.orange-bar{ background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+
+.feat-icon  { font-size: 26px; margin-bottom: 10px; display: block; }
+.feat-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.feat-desc  { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+/* DIVIDER */
+.chat-divider {
     display: flex;
     align-items: center;
-    gap: 14px;
-    margin: 28px 0 24px;
+    gap: 12px;
+    margin: 8px 0 20px;
 }
 
-.divider-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-}
+.div-line { flex: 1; height: 1px; background: var(--border); }
 
-.divider-text {
-    font-size: 12px;
+.div-label {
+    font-size: 11px;
     font-weight: 700;
     color: var(--muted);
     letter-spacing: 1px;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
-/* ── CHAT MESSAGES ── */
+/* CHAT */
 [data-testid="stChatMessage"] {
-    background: white !important;
-    border-radius: 20px !important;
-    border: 1.5px solid var(--border) !important;
-    padding: 18px !important;
-    margin-bottom: 14px !important;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.03) !important;
-}
-
-[data-testid="stChatMessage"][data-testid*="user"] {
-    background: linear-gradient(135deg, var(--primary-light), #e0f2fe) !important;
-    border-color: rgba(14,165,233,0.2) !important;
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-    .hero-title { font-size: 38px; }
-    .hero-wrapper { padding: 32px 24px; }
-    .hero-float { display: none; }
-    .feat-grid { grid-template-columns: 1fr; }
-    .stats-bar { grid-template-columns: 1fr; }
-    .navbar { padding: 14px 18px; }
+    border-radius: 18px !important;
+    padding: 14px !important;
+    margin-bottom: 12px !important;
 }
 </style>
-"""
-
-st.markdown(css, unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 # ==================================================
 # NAVBAR
 # ==================================================
 st.markdown(f"""
 <div class="navbar">
-    <div class="nav-logo">
-        <div class="nav-logo-icon">🩺</div>
-        <span class="nav-logo-text">MediAssist AI</span>
+    <div class="nav-left">
+        <div class="nav-icon">🩺</div>
+        <span class="nav-name">MediAssist AI</span>
     </div>
     <div class="nav-badge">⚡ {MODEL_NAME}</div>
 </div>
 """, unsafe_allow_html=True)
 
 # ==================================================
-# HERO SECTION
+# HERO
 # ==================================================
 st.markdown("""
 <div class="hero-wrapper">
+    <div class="hero-blob1"></div>
+    <div class="hero-blob2"></div>
     <div class="hero-tag">✦ AI-Powered Health Guidance</div>
     <div class="hero-title">Your Personal<br><span>Health Assistant</span></div>
     <div class="hero-sub">
-        Share your symptoms and get smart, thoughtful guidance on possible causes,
-        self-care steps, and when to seek professional medical help.
+        Share your symptoms and get smart, thoughtful guidance on possible
+        causes, self-care steps, and when to seek professional medical help.
     </div>
     <div class="hero-chips">
-        <span class="hero-chip">🔒 Private & Secure</span>
+        <span class="hero-chip">🔒 Private &amp; Secure</span>
         <span class="hero-chip">⚡ Instant Responses</span>
         <span class="hero-chip">🌍 Global Coverage</span>
-    </div>
-
-    <div class="hero-float">
-        <h4>📋 Include these details</h4>
-        <ul>
-            <li><span class="dot"></span> Your age & gender</li>
-            <li><span class="dot"></span> Country / region</li>
-            <li><span class="dot"></span> Clear symptoms</li>
-            <li><span class="dot"></span> Sudden or gradual?</li>
-            <li><span class="dot"></span> Current medicines</li>
-            <li><span class="dot"></span> Duration of symptoms</li>
-        </ul>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 # ==================================================
-# STATS BAR
+# STATS
 # ==================================================
 st.markdown("""
-<div class="stats-bar">
-    <div class="stat-item">
+<div class="stats-row">
+    <div class="stat-box">
         <div class="stat-num">70B</div>
-        <div class="stat-label">Parameter Model</div>
+        <div class="stat-lbl">Parameter Model</div>
     </div>
-    <div class="stat-item">
+    <div class="stat-box">
         <div class="stat-num">&lt;2s</div>
-        <div class="stat-label">Avg Response Time</div>
+        <div class="stat-lbl">Avg Response Time</div>
     </div>
-    <div class="stat-item">
+    <div class="stat-box">
         <div class="stat-num">24/7</div>
-        <div class="stat-label">Always Available</div>
+        <div class="stat-lbl">Always Available</div>
+    </div>
+</div>
+""", unsafe_allow_html=True)
+
+# ==================================================
+# INFO CARDS
+# ==================================================
+st.markdown("""
+<div class="info-row">
+    <div class="info-card">
+        <div class="info-card-title">📋 Include these details</div>
+        <ul class="info-list">
+            <li><span class="dot-blue">•</span> Your age &amp; gender</li>
+            <li><span class="dot-blue">•</span> Country or region</li>
+            <li><span class="dot-blue">•</span> Describe symptoms clearly</li>
+            <li><span class="dot-blue">•</span> Sudden or gradual onset?</li>
+            <li><span class="dot-blue">•</span> Current medications</li>
+            <li><span class="dot-blue">•</span> Duration of symptoms</li>
+        </ul>
+    </div>
+    <div class="info-card">
+        <div class="info-card-title">✅ What I can do</div>
+        <ul class="info-list">
+            <li><span class="dot-green">•</span> Explain possible causes</li>
+            <li><span class="dot-green">•</span> Suggest safe self-care tips</li>
+            <li><span class="dot-green">•</span> Flag urgent warning signs</li>
+            <li><span class="dot-green">•</span> Guide when to see a doctor</li>
+            <li><span class="dot-green">•</span> Provide clear explanations</li>
+            <li><span class="dot-green">•</span> Answer follow-up questions</li>
+        </ul>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -515,11 +469,13 @@ st.markdown("""
 st.markdown("""
 <div class="alert-box">
     <div class="alert-icon">⚠️</div>
-    <div class="alert-text">
-        <strong>Emergency Warning</strong><br>
-        For chest pain, difficulty breathing, stroke symptoms, severe bleeding,
-        or any life-threatening emergency — call emergency services or go to the
-        nearest ER immediately. This AI does not replace professional medical advice.
+    <div>
+        <div class="alert-title">Emergency Warning</div>
+        <div class="alert-text">
+            For chest pain, difficulty breathing, stroke symptoms, severe bleeding,
+            or any life-threatening emergency — call emergency services or visit
+            your nearest ER immediately. This AI does not replace professional medical advice.
+        </div>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -528,24 +484,24 @@ st.markdown("""
 # FEATURE CARDS
 # ==================================================
 st.markdown("""
-<div class="section-label">What I offer</div>
-<div class="section-title">How I can help you today</div>
-
 <div class="feat-grid">
-    <div class="feat-card blue">
+    <div class="feat-card">
+        <div class="feat-card-top blue-bar"></div>
         <span class="feat-icon">🔍</span>
         <div class="feat-title">Symptom Analysis</div>
-        <div class="feat-desc">Understand possible causes behind your symptoms with clear, evidence-based explanations.</div>
+        <div class="feat-desc">Understand possible causes with clear, evidence-based explanations.</div>
     </div>
-    <div class="feat-card green">
+    <div class="feat-card">
+        <div class="feat-card-top green-bar"></div>
         <span class="feat-icon">💊</span>
         <div class="feat-title">Self-Care Guidance</div>
-        <div class="feat-desc">Get safe, practical home-care tips to manage mild conditions while monitoring progress.</div>
+        <div class="feat-desc">Safe, practical home-care tips to manage mild conditions.</div>
     </div>
-    <div class="feat-card orange">
+    <div class="feat-card">
+        <div class="feat-card-top orange-bar"></div>
         <span class="feat-icon">🚨</span>
         <div class="feat-title">Urgent Flag System</div>
-        <div class="feat-desc">I'll clearly flag warning signs that require immediate or professional medical attention.</div>
+        <div class="feat-desc">I clearly flag warning signs requiring immediate medical attention.</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -554,10 +510,10 @@ st.markdown("""
 # CHAT DIVIDER
 # ==================================================
 st.markdown("""
-<div class="divider">
-    <div class="divider-line"></div>
-    <div class="divider-text">💬 Start Your Conversation</div>
-    <div class="divider-line"></div>
+<div class="chat-divider">
+    <div class="div-line"></div>
+    <div class="div-label">💬 Start Your Conversation</div>
+    <div class="div-line"></div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -577,29 +533,26 @@ for msg in st.session_state.messages:
 def get_reply(messages):
     system_prompt = {
         "role": "system",
-        "content": """
-You are MediAssist AI — a careful, empathetic, and knowledgeable healthcare assistant.
-
-Guidelines:
-- NEVER provide a definitive diagnosis.
-- Always mention 2-4 possible causes clearly.
-- Provide practical, safe self-care suggestions.
-- Clearly flag any red-flag / emergency warning signs.
-- Recommend seeing a doctor when appropriate.
-- Be warm, professional, and easy to understand.
-- Structure your response with clear sections using markdown.
-- Keep responses concise but thorough (max ~300 words).
-- End with a short disclaimer reminding users this is not medical advice.
-"""
+        "content": (
+            "You are MediAssist AI — a careful, empathetic, and knowledgeable healthcare assistant.\n\n"
+            "Guidelines:\n"
+            "- NEVER provide a definitive diagnosis.\n"
+            "- Always mention 2-4 possible causes clearly.\n"
+            "- Provide practical, safe self-care suggestions.\n"
+            "- Clearly flag any red-flag or emergency warning signs.\n"
+            "- Recommend seeing a doctor when appropriate.\n"
+            "- Be warm, professional, and easy to understand.\n"
+            "- Structure your response with clear sections using markdown.\n"
+            "- Keep responses concise but thorough (max ~300 words).\n"
+            "- End with a short disclaimer reminding users this is not medical advice."
+        )
     }
-
     response = client.chat.completions.create(
         model=MODEL_NAME,
         messages=[system_prompt] + messages,
         temperature=0.4,
         max_completion_tokens=900
     )
-
     return response.choices[0].message.content
 
 # ==================================================
@@ -617,830 +570,6 @@ if prompt:
         with st.chat_message("assistant"):
             with st.spinner("Analyzing your symptoms..."):
                 reply = get_reply(st.session_state.messages)
-                st.markdown(reply)
-
-        st.session_state.messages.append({"role": "assistant", "content": reply})
-
-    except Exception as e:
-        st.error(f"⚠️ Error: {e}")
-
-[data-testid="stChatInput"] textarea{
-font-family:'Plus Jakarta Sans', sans-serif !important;
-color:var(--ink-900) !important;
-}
-
-.hero{
-display:grid;
-grid-template-columns:1.6fr 1fr;
-gap:24px;
-margin-bottom:28px;
-}
-
-.eyebrow{
-font-size:13px;
-font-weight:700;
-letter-spacing:1px;
-color:var(--teal-600);
-text-transform:uppercase;
-}
-
-.hero h1{
-font-family:'Fraunces', serif;
-font-size:52px;
-margin:10px 0;
-line-height:1.05;
-}
-
-.hero p{
-font-size:16px;
-line-height:1.7;
-color:var(--ink-700);
-}
-
-.hero-card{
-background:white;
-padding:24px;
-border-radius:22px;
-box-shadow:0 14px 40px rgba(2,8,23,.06);
-}
-
-.chips{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:18px;
-}
-
-.chip{
-background:var(--teal-50);
-color:var(--teal-700);
-padding:8px 14px;
-border-radius:999px;
-font-size:13px;
-font-weight:600;
-}
-
-.alert{
-background:white;
-padding:16px;
-border-radius:18px;
-border:1px solid var(--teal-100);
-margin-bottom:24px;
-}
-
-.section-title{
-font-size:22px;
-font-weight:700;
-margin-bottom:14px;
-}
-
-.card-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:14px;
-margin-bottom:26px;
-}
-
-.mini-card{
-background:white;
-padding:18px;
-border-radius:18px;
-box-shadow:0 10px 24px rgba(2,8,23,.04);
-}
-
-@media (max-width:900px){
-.hero{
-grid-template-columns:1fr;
-}
-.hero h1{
-font-size:42px;
-}
-}
-</style>
-"""
-
-st.markdown(css, unsafe_allow_html=True)
-
-# ==================================================
-# HERO SECTION
-# ==================================================
-st.markdown(f"""
-<div class="hero">
-
-<div>
-<div class="eyebrow">HealthCare Assistant</div>
-<h1>HealthCare Bot</h1>
-
-<p>
-Share your symptoms, age, and how long you have felt them.
-I’ll offer possible next steps, self-care tips, and when to seek urgent help.
-</p>
-
-<div class="chips">
-<span class="chip">Model: {MODEL_NAME}</span>
-<span class="chip">Fast Responses</span>
-<span class="chip">Smart Guidance</span>
-</div>
-</div>
-
-<div class="hero-card">
-<h3>Before we start</h3>
-<ul>
-<li>Include your age</li>
-<li>Mention country</li>
-<li>Describe symptoms clearly</li>
-<li>Sudden or gradual?</li>
-<li>Any medicines?</li>
-</ul>
-</div>
-
-</div>
-""", unsafe_allow_html=True)
-
-# ==================================================
-# ALERT
-# ==================================================
-st.markdown("""
-<div class="alert">
-<strong>Safety note:</strong>
-For chest pain, breathing trouble, stroke signs,
-or heavy bleeding seek emergency care immediately.
-</div>
-""", unsafe_allow_html=True)
-
-# ==================================================
-# FEATURE SECTION
-# ==================================================
-st.markdown("""
-<div class="section-title">How I can help</div>
-
-<div class="card-grid">
-<div class="mini-card">Explain likely causes.</div>
-<div class="mini-card">Suggest self-care tips.</div>
-<div class="mini-card">Flag urgent symptoms.</div>
-</div>
-""", unsafe_allow_html=True)
-
-# ==================================================
-# CHAT MEMORY
-# ==================================================
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        st.markdown(msg["content"])
-
-# ==================================================
-# AI RESPONSE
-# ==================================================
-def get_reply(messages):
-    system_prompt = {
-        "role": "system",
-        "content": """
-You are a careful healthcare assistant.
-
-Rules:
-- No final diagnosis.
-- Mention possible causes.
-- Suggest safe care.
-- Mention warning signs.
-- Keep concise.
-"""
-    }
-
-    response = client.chat.completions.create(
-        model=MODEL_NAME,
-        messages=[system_prompt] + messages,
-        temperature=0.4,
-        max_completion_tokens=900
-    )
-
-    return response.choices[0].message.content
-
-# ==================================================
-# INPUT
-# ==================================================
-prompt = st.chat_input("Describe symptoms, age, duration...")
-
-if prompt:
-    st.session_state.messages.append({
-        "role": "user",
-        "content": prompt
-    })
-
-    with st.chat_message("user"):
-        st.markdown(prompt)
-
-    try:
-        with st.chat_message("assistant"):
-            with st.spinner("Analyzing..."):
-                reply = get_reply(st.session_state.messages)
-                st.markdown(reply)
-
-        st.session_state.messages.append({
-            "role": "assistant",
-            "content": reply
-        })
-
-    except Exception as e:
-        st.error(f"Error: {e}")--teal-500:#0d9488;
---teal-600:#0f766e;
---teal-700:#115e59;
---ink-900:#0f172a;
---ink-700:#475569;
-}
-
-html, body{
-background: radial-gradient(circle at 10% 10%, #f0fdfa 0%, #ffffff 50%, #f0fdfa 100%);
-}
-
-.stApp{
-background: radial-gradient(circle at 10% 10%, #f0fdfa 0%, #ffffff 50%, #f0fdfa 100%);
-font-family:'Plus Jakarta Sans', sans-serif;
-color:var(--ink-900);
-}
-
-[data-testid="stHeader"],
-[data-testid="stToolbar"],
-footer,
-header{
-background:transparent;
-}
-
-[data-testid="stBottom"]{
-background:#ffffff !important;
-}
-
-[data-testid="stChatInput"]{
-background:#ffffff !important;
-border:1px solid var(--teal-100) !important;
-border-radius:16px !important;
-box-shadow:0 -10px 40px rgba(0,0,0,0.02) !important;
-}
-
-[data-testid="stChatInput"] textarea{
-font-family:'Plus Jakarta Sans', sans-serif !important;
-color:var(--ink-900) !important;
-}
-
-.hero{
-display:grid;
-grid-template-columns:1.6fr 1fr;
-gap:24px;
-align-items:stretch;
-margin-bottom:28px;
-}
-
-.eyebrow{
-font-size:13px;
-font-weight:700;
-letter-spacing:1px;
-color:var(--teal-600);
-text-transform:uppercase;
-}
-
-.hero h1{
-font-family:'Fraunces', serif;
-font-size:52px;
-line-height:1.05;
-margin:10px 0;
-}
-
-.hero p{
-font-size:16px;
-line-height:1.7;
-color:var(--ink-700);
-}
-
-.hero-card{
-background:white;
-padding:24px;
-border-radius:22px;
-box-shadow:0 14px 40px rgba(2,8,23,.06);
-}
-
-.chips{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:18px;
-}
-
-.chip{
-background:var(--teal-50);
-color:var(--teal-700);
-padding:8px 14px;
-border-radius:999px;
-font-size:13px;
-font-weight:600;
-}
-
-.alert{
-background:white;
-padding:16px 18px;
-border-radius:18px;
-border:1px solid var(--teal-100);
-margin-bottom:24px;
-}
-
-.section-title{
-font-size:22px;
-font-weight:700;
-margin-bottom:14px;
-}
-
-.card-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:14px;
-margin-bottom:26px;
-}
-
-.mini-card{
-background:white;
-padding:18px;
-border-radius:18px;
-box-shadow:0 10px 24px rgba(2,8,23,.04);
-}
-
-@media (max-width:900px){
-.hero{
-grid-template-columns:1fr;
-}
-.hero h1{
-font-size:42px;
-}
-}
-</style>
-""", unsafe_allow_html=True)
-
-# ==================================================
-# HERO SECTION
-# ==================================================
-st.markdown(f"""
-<div class="hero">
-<div>
-<div class="eyebrow">HealthCare Assistant</div>
-<h1>HealthCare Bot</h1>
-
-<p>
-Share your symptoms, age, and how long you have felt them.
-I’ll offer possible next steps, self-care tips,
-and when to seek urgent help.
-</p>
-
-<div class="chips">
-<span class="chip">Model: {MODEL_NAME}</span>
-<span class="chip">Fast Responses</span>
-<span class="chip">Medical Guidance</span>
-</div>
-</div>
-
-<div class="hero-card">
-<h3>Before we start</h3>
-<ul>
-<li>Include your age</li>
-<li>Mention country</li>
-<li>Describe symptoms clearly</li>
-<li>Sudden or gradual?</li>
-<li>Any medicines?</li>
-</ul>
-</div>
-</div>
-""", unsafe_allow_html=True)
-
-# ==================================================
-# ALERT
-# ==================================================
-st.markdown("""
-<div class="alert">
-<strong>Safety note:</strong>
-This chatbot is informational only.
-If you have chest pain, breathing trouble,
-stroke signs, or heavy bleeding,
-seek emergency care immediately.
-</div>
-""", unsafe_allow_html=True)
-
-# ==================================================
-# FEATURE CARDS
-# ==================================================
-st.markdown("""
-<div class="section-title">How I can help</div>
-
-<div class="card-grid">
-<div class="mini-card">Explain likely causes and what to watch for.</div>
-<div class="mini-card">Suggest safe self-care for 24–48 hours.</div>
-<div class="mini-card">Flag urgent symptoms needing doctor help.</div>
-</div>
-""", unsafe_allow_html=True)
-
-# ==================================================
-# CHAT MEMORY
-# ==================================================
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# ==================================================
-# SHOW HISTORY
-# ==================================================
-for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        st.markdown(msg["content"])
-
-# ==================================================
-# AI FUNCTION
-# ==================================================
-def get_reply(messages):
-    system_prompt = {
-        "role": "system",
-        "content": """
-You are HealthCare, a careful healthcare assistant.
-
-Rules:
-- Do not claim final diagnosis.
-- Give likely causes only.
-- Mention warning signs.
-- Suggest self-care if safe.
-- Keep answers clear and concise.
-"""
-    }
-
-    response = client.chat.completions.create(
-        model=MODEL_NAME,
-        messages=[system_prompt] + messages,
-        temperature=0.4,
-        max_completion_tokens=900
-    )
-
-    return response.choices[0].message.content
-
-# ==================================================
-# INPUT
-# ==================================================
-prompt = st.chat_input("Describe symptoms, age, duration...")
-
-if prompt:
-    st.session_state.messages.append({
-        "role": "user",
-        "content": prompt
-    })
-
-    with st.chat_message("user"):
-        st.markdown(prompt)
-
-    try:
-        with st.chat_message("assistant"):
-            with st.spinner("Analyzing..."):
-                reply = get_reply(st.session_state.messages)
-                st.markdown(reply)
-
-        st.session_state.messages.append({
-            "role": "assistant",
-            "content": reply
-        })
-
-    except Exception as e:
-        st.error(f"Error: {e}")
-[data-testid="stChatInput"] textarea {
-    font-family: 'Plus Jakarta Sans', sans-serif !important;
-    background-color: transparent !important;
-    color: var(--ink-900) !important;
-}
-
-.stButton button,
-.stDownloadButton button,
-.stFormSubmitButton button {
-    background: linear-gradient(135deg, var(--teal-500), var(--teal-600));
-    color: white;
-    border: none;
-}
-
-.hero {
-    display:grid;
-    grid-template-columns:1.6fr 1fr;
-    gap:24px;
-    align-items:stretch;
-    margin-bottom:28px;
-}
-
-.eyebrow {
-    font-size:13px;
-    font-weight:700;
-    letter-spacing:1px;
-    color:var(--teal-600);
-    text-transform:uppercase;
-}
-
-.hero h1 {
-    font-family:'Fraunces', serif;
-    font-size:52px;
-    line-height:1.05;
-    margin:10px 0;
-}
-
-.hero p {
-    color:var(--ink-700);
-    font-size:16px;
-    line-height:1.7;
-}
-
-.hero-card {
-    background:white;
-    border-radius:22px;
-    padding:24px;
-    box-shadow:0 14px 40px rgba(2,8,23,.06);
-}
-
-.chips {
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:18px;
-}
-
-.chip {
-    background:var(--teal-50);
-    color:var(--teal-700);
-    padding:8px 14px;
-    border-radius:999px;
-    font-size:13px;
-    font-weight:600;
-}
-
-.alert {
-    background:white;
-    border:1px solid var(--teal-100);
-    border-radius:18px;
-    padding:16px 18px;
-    margin-bottom:24px;
-}
-
-.section-title {
-    font-size:22px;
-    font-weight:700;
-    margin-bottom:14px;
-}
-
-.card-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:14px;
-    margin-bottom:26px;
-}
-
-.mini-card {
-    background:white;
-    border-radius:18px;
-    padding:18px;
-    box-shadow:0 10px 24px rgba(2,8,23,.04);
-}
-
-@media (max-width:900px){
-.hero{
-grid-template-columns:1fr;
-}
-.hero h1{
-font-size:42px;
-}
-}
-</style>
-""",
-    unsafe_allow_html=True,
-)
-
-# ==================================================
-# HERO SECTION
-# ==================================================
-st.markdown(
-    f"""
-<div class="hero">
-    <div>
-        <div class="eyebrow">HealthCare Assistant</div>
-        <h1>HealthCare Bot</h1>
-        <p>
-            Share your symptoms, age, and how long you have felt them.
-            I’ll offer possible next steps, self-care tips, and when to seek urgent help.
-        </p>
-
-        <div class="chips">
-            <span class="chip">Model: {MODEL_NAME}</span>
-            <span class="chip">Fast Responses</span>
-            <span class="chip">Clean Guidance</span>
-        </div>
-    </div>
-
-    <div class="hero-card">
-        <h3>Before we start</h3>
-        <ul>
-            <li>Include your age</li>
-            <li>Mention country</li>
-            <li>Describe symptoms clearly</li>
-            <li>Sudden or gradual?</li>
-            <li>Any medicines?</li>
-        </ul>
-    </div>
-</div>
-""",
-    unsafe_allow_html=True,
-)
-
-# ==================================================
-# ALERT
-# ==================================================
-st.markdown(
-    """
-<div class="alert">
-<strong>Safety note:</strong> Informational only. If you have chest pain,
-breathing trouble, stroke signs, or heavy bleeding, seek emergency care immediately.
-</div>
-""",
-    unsafe_allow_html=True,
-)
-
-# ==================================================
-# FEATURE SECTION
-# ==================================================
-st.markdown(
-    """
-<div class="section-title">How I can help</div>
-
-<div class="card-grid">
-    <div class="mini-card">Explain possible causes and what to watch for.</div>
-    <div class="mini-card">Suggest safe self-care steps for 24–48 hours.</div>
-    <div class="mini-card">Flag symptoms needing urgent medical help.</div>
-</div>
-""",
-    unsafe_allow_html=True,
-)
-
-# ==================================================
-# CHAT HISTORY
-# ==================================================
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        st.markdown(msg["content"])
-
-# ==================================================
-# AI RESPONSE
-# ==================================================
-def get_reply(messages):
-    system_prompt = {
-        "role": "system",
-        "content": """
-You are HealthCare, a careful medical information assistant.
-
-Rules:
-- Give practical health guidance
-- Mention likely causes, not final diagnosis
-- Mention warning signs
-- Keep concise and structured
-"""
-    }
-
-    response = client.chat.completions.create(
-        model=MODEL_NAME,
-        messages=[system_prompt] + messages,
-        temperature=0.4,
-        max_completion_tokens=900
-    )
-
-    return response.choices[0].message.content
-
-# ==================================================
-# INPUT
-# ==================================================
-prompt = st.chat_input("Describe symptoms, age, duration...")
-
-if prompt:
-    st.session_state.messages.append({"role": "user", "content": prompt})
-
-    with st.chat_message("user"):
-        st.markdown(prompt)
-
-    try:
-        with st.chat_message("assistant"):
-            with st.spinner("Analyzing..."):
-                reply = get_reply(st.session_state.messages)
-                st.markdown(reply)
-
-        st.session_state.messages.append({"role": "assistant", "content": reply})
-
-    except Exception as e:
-        st.error(f"Error: {e}")    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-}
-
-.chips {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.chip {
-    background: #f0fdfa;
-    color: #0f766e;
-    padding: 6px 12px;
-    border-radius: 999px;
-    font-size: 13px;
-}
-
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-    gap: 15px;
-}
-
-@media (max-width: 900px) {
-    .hero {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
-""", unsafe_allow_html=True)
-
-# -----------------------------
-# Header
-# -----------------------------
-
-
-
-# -----------------------------
-# Safety Note
-# -----------------------------
-st.markdown("""
-<div class="alert">
-⚠️ Informational only. For chest pain, breathing trouble, stroke signs, seek urgent medical help.
-</div>
-""", unsafe_allow_html=True)
-
-# -----------------------------
-# Help Cards
-# -----------------------------
-st.markdown("""
-<div class="card-grid">
-    <div class="mini-card">Possible causes</div>
-    <div class="mini-card">Self-care tips</div>
-    <div class="mini-card">When to see doctor</div>
-</div>
-""", unsafe_allow_html=True)
-
-# -----------------------------
-# Session Chat
-# -----------------------------
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        st.markdown(msg["content"])
-
-# -----------------------------
-# AI Function
-# -----------------------------
-def ask_groq(messages):
-    system_prompt = {
-        "role": "system",
-        "content": """
-You are a careful healthcare assistant.
-
-Rules:
-- No final diagnosis.
-- Give likely causes.
-- Give self-care advice.
-- Mention emergency signs.
-- Keep concise and clear.
-"""
-    }
-
-    response = client.chat.completions.create(
-        model=MODEL_NAME,
-        messages=[system_prompt] + messages,
-        temperature=0.4,
-        max_completion_tokens=900
-    )
-
-    return response.choices[0].message.content
-
-# -----------------------------
-# Input
-# -----------------------------
-prompt = st.chat_input("Describe symptoms, age, duration...")
-
-if prompt:
-    st.session_state.messages.append({"role": "user", "content": prompt})
-
-    with st.chat_message("user"):
-        st.markdown(prompt)
-
-    try:
-        with st.chat_message("assistant"):
-            with st.spinner("Analyzing..."):
-                reply = ask_groq(st.session_state.messages)
                 st.markdown(reply)
 
         st.session_state.messages.append({"role": "assistant", "content": reply})
