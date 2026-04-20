@@ -103,29 +103,7 @@ h1 {
 # Header
 # -----------------------------
 st.markdown(f"""
-<div class="hero">
-    <div>
-        <h1>🩺 HealthCare Bot</h1>
-        <p>Describe symptoms, age, and duration for quick health guidance.</p>
 
-        <div class="chips">
-            <span class="chip">{MODEL_NAME}</span>
-            <span class="chip">Groq Powered</span>
-            <span class="chip">Instant Answers</span>
-        </div>
-    </div>
-
-    <div class="hero-card">
-        <h3>Before you start</h3>
-        <ul>
-            <li>Mention age</li>
-            <li>Tell symptoms clearly</li>
-            <li>Say how long</li>
-            <li>Any medicines?</li>
-        </ul>
-    </div>
-</div>
-""", unsafe_allow_html=True)
 
 # -----------------------------
 # Safety Note
