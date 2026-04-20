@@ -622,7 +622,7 @@ if prompt:
         st.session_state.messages.append({"role": "assistant", "content": reply})
 
     except Exception as e:
-        st.error(f"⚠️ Error: {e}")}
+        st.error(f"⚠️ Error: {e}")
 
 [data-testid="stChatInput"] textarea{
 font-family:'Plus Jakarta Sans', sans-serif !important;
