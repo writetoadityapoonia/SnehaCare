@@ -1,12 +1,12 @@
 import os
 import streamlit as st
-from dotenv import load_dotenv
 from groq import Groq
 
 # -----------------------------
-# Load .env
+# DIRECT API KEY IN CODE
+# Replace with your NEW Groq key
 # -----------------------------
-load_dotenv(dotenv_path=".env")
+api_key = "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".strip()
 
 MODEL_NAME = "llama-3.3-70b-versatile"
 
@@ -20,12 +20,10 @@ st.set_page_config(
 )
 
 # -----------------------------
-# Load API Key
+# Validate Key
 # -----------------------------
-api_key = os.getenv("GROQ_API_KEY", "").strip()
-
-if not api_key:
-    st.error("Missing GROQ_API_KEY in .env file")
+if not api_key or not api_key.startswith("gsk_"):
+    st.error("Invalid or missing Groq API key.")
     st.stop()
 
 # -----------------------------
@@ -34,7 +32,7 @@ if not api_key:
 client = Groq(api_key=api_key)
 
 # -----------------------------
-# Full Original Styling
+# Full Styling
 # -----------------------------
 st.markdown("""
 <style>
@@ -43,125 +41,54 @@ st.markdown("""
 :root {
     --teal-50: #f0fdfa;
     --teal-100: #ccfbf1;
-    --teal-200: #99f6e4;
     --teal-500: #0d9488;
     --teal-600: #0f766e;
-    --teal-700: #115e59;
     --ink-900: #0f172a;
-    --ink-700: #475569;
 }
 
-html, body {
-    background: radial-gradient(circle at 10% 10%, #f0fdfa 0%, #ffffff 50%, #f0fdfa 100%);
-}
-
-.stApp {
+html, body, .stApp {
     background: radial-gradient(circle at 10% 10%, #f0fdfa 0%, #ffffff 50%, #f0fdfa 100%);
     color: var(--ink-900);
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-[data-testid="stHeader"],
-[data-testid="stToolbar"],
-footer,
-header {
-    background: transparent;
-}
-
-[data-testid="stBottom"] {
-    background-color: #ffffff !important;
-}
-
-[data-testid="stChatInput"] {
-    background-color: #ffffff !important;
-    border: 1px solid var(--teal-100) !important;
-    border-radius: 16px !important;
-    box-shadow: 0 -10px 40px rgba(0,0,0,0.02) !important;
-}
-
-[data-testid="stChatInput"] textarea {
-    font-family: 'Plus Jakarta Sans', sans-serif !important;
-    color: var(--ink-900) !important;
-}
-
-.stButton button,
-.stDownloadButton button,
-.stFormSubmitButton button {
-    background: linear-gradient(135deg, var(--teal-500), var(--teal-600));
-    color: white;
-    border: none;
+h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 48px;
 }
 
 .hero {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 25px;
-    margin-top: 20px;
     margin-bottom: 30px;
 }
 
-.hero-card {
+.hero-card, .mini-card, .alert {
     background: white;
-    padding: 20px;
+    padding: 18px;
     border-radius: 18px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-.eyebrow {
-    color: var(--teal-600);
-    font-weight: 700;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-h1 {
-    font-family: 'Fraunces', serif;
-    font-size: 48px;
-    margin-bottom: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
 }
 
 .chips {
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
-    margin-top: 12px;
 }
 
 .chip {
-    background: var(--teal-50);
-    color: var(--teal-700);
+    background: #f0fdfa;
+    color: #0f766e;
     padding: 6px 12px;
     border-radius: 999px;
     font-size: 13px;
-}
-
-.alert {
-    background: white;
-    border-left: 5px solid #0d9488;
-    padding: 15px;
-    border-radius: 12px;
-    margin-bottom: 25px;
-}
-
-.section-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 14px;
 }
 
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
     gap: 15px;
-    margin-bottom: 25px;
-}
-
-.mini-card {
-    background: white;
-    padding: 16px;
-    border-radius: 16px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
 }
 
 @media (max-width: 900px) {
@@ -173,80 +100,65 @@ h1 {
 """, unsafe_allow_html=True)
 
 # -----------------------------
-# Header Section
+# Header
 # -----------------------------
 st.markdown(f"""
 <div class="hero">
     <div>
-        <div class="eyebrow">HealthCare Assistant</div>
-        <h1>HealthCare Bot</h1>
-        <p>
-            Share your symptoms, age, and duration. I’ll provide possible causes,
-            self-care tips, and when to seek urgent care.
-        </p>
+        <h1>🩺 HealthCare Bot</h1>
+        <p>Describe symptoms, age, and duration for quick health guidance.</p>
+
         <div class="chips">
-            <span class="chip">Model: {MODEL_NAME}</span>
-            <span class="chip">Secure API via .env</span>
-            <span class="chip">Fast AI Guidance</span>
+            <span class="chip">{MODEL_NAME}</span>
+            <span class="chip">Groq Powered</span>
+            <span class="chip">Instant Answers</span>
         </div>
     </div>
 
     <div class="hero-card">
-        <h3>Before we start</h3>
+        <h3>Before you start</h3>
         <ul>
-            <li>Include age</li>
-            <li>Mention country</li>
-            <li>List symptoms clearly</li>
-            <li>Say sudden or gradual</li>
+            <li>Mention age</li>
+            <li>Tell symptoms clearly</li>
+            <li>Say how long</li>
+            <li>Any medicines?</li>
         </ul>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 # -----------------------------
-# Safety Box
+# Safety Note
 # -----------------------------
 st.markdown("""
 <div class="alert">
-<strong>⚠️ Safety Note:</strong> This bot is informational only.
-For chest pain, breathing trouble, stroke signs, heavy bleeding —
-seek emergency medical care immediately.
+⚠️ Informational only. For chest pain, breathing trouble, stroke signs, seek urgent medical help.
 </div>
 """, unsafe_allow_html=True)
 
 # -----------------------------
-# Help Section
+# Help Cards
 # -----------------------------
 st.markdown("""
-<div class="section-title">How I Can Help</div>
-
 <div class="card-grid">
-    <div class="mini-card">Explain likely causes</div>
-    <div class="mini-card">Suggest home care steps</div>
-    <div class="mini-card">Tell when to see doctor</div>
+    <div class="mini-card">Possible causes</div>
+    <div class="mini-card">Self-care tips</div>
+    <div class="mini-card">When to see doctor</div>
 </div>
 """, unsafe_allow_html=True)
 
 # -----------------------------
-# Chat Memory
+# Session Chat
 # -----------------------------
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# -----------------------------
-# Show Old Messages
-# -----------------------------
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
 # -----------------------------
-# Chat Input
-# -----------------------------
-prompt = st.chat_input("Describe your symptoms, age, and duration...")
-
-# -----------------------------
-# AI Response
+# AI Function
 # -----------------------------
 def ask_groq(messages):
     system_prompt = {
@@ -255,11 +167,11 @@ def ask_groq(messages):
 You are a careful healthcare assistant.
 
 Rules:
-- Do not claim final diagnosis.
-- Give possible causes.
-- Give self-care tips.
-- Mention warning signs.
-- Be clear and concise.
+- No final diagnosis.
+- Give likely causes.
+- Give self-care advice.
+- Mention emergency signs.
+- Keep concise and clear.
 """
     }
 
@@ -273,13 +185,12 @@ Rules:
     return response.choices[0].message.content
 
 # -----------------------------
-# Run Chat
+# Input
 # -----------------------------
+prompt = st.chat_input("Describe symptoms, age, duration...")
+
 if prompt:
-    st.session_state.messages.append({
-        "role": "user",
-        "content": prompt
-    })
+    st.session_state.messages.append({"role": "user", "content": prompt})
 
     with st.chat_message("user"):
         st.markdown(prompt)
@@ -290,10 +201,7 @@ if prompt:
                 reply = ask_groq(st.session_state.messages)
                 st.markdown(reply)
 
-        st.session_state.messages.append({
-            "role": "assistant",
-            "content": reply
-        })
+        st.session_state.messages.append({"role": "assistant", "content": reply})
 
     except Exception as e:
         st.error(f"Error: {e}")
